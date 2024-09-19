@@ -1,0 +1,21 @@
+name: Print Message Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      user_message:
+        description: 'Enter a message'
+        required: true
+        default: 'Hello, World!'
+
+jobs:
+  print_message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Run Print Message Action
+        uses: ./
+        with:
+          user_message: ${{ github.event.inputs.user_message }}
